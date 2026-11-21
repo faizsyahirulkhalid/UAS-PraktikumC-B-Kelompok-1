@@ -53,3 +53,89 @@ void bacaKamar(Kamar kamar[], const char *namaFile) {
     fclose(fp);
 }
 
+void reservasi(Kamar kamar[], const char *namaFile) {
+    Tamu tamu;
+    int nomor, i, ditemukan = 0;
+    tampilKamar(kamar);
+    printf("\nNama tamu: ");
+    scanf(" %49[^\n]", tamu.nama);
+    printf("NIK: ");
+    scanf(" %24s", tamu.nik);
+    printf("Nomor kamar yang dipilih: ");
+    scanf("%d", &nomor);
+    for (i = 0; i < JUMLAH_KAMAR; i++) {
+        if (kamar[i].nomor == nomor) {
+            ditemukan = 1;
+            if (kamar[i].terisi) {
+                printf("Maaf, kamar sudah terisi.\n");
+                return;
+            }
+            printf("Lama menginap (malam): ");
+            scanf("%d", &tamu.lamaMenginap);
+            if (tamu.lamaMenginap < 1) {
+                printf("Lama menginap minimal 1 malam.\n");
+                return;
+            }
+            kamar[i].terisi = 1;
+            tamu.nomorKamar = nomor;
+            tamu.totalBayar = kamar[i].tarif * tamu.lamaMenginap;
+            simpanKamar(kamar, namaFile);
+            printf("Reservasi berhasil. Perkiraan biaya: Rp%d\n", tamu.totalBayar);
+            return;
+        }
+    }
+    if (!ditemukan) printf("Nomor kamar tidak ditemukan.\n");
+}
+
+void buatInvoice(Tamu tamu) {
+    FILE *fp = fopen("data/invoice.txt", "a");
+    if (fp == NULL) {
+        printf("Gagal membuat invoice.\n");
+        return;
+    }
+    fprintf(fp, "===== INVOICE HOTEL =====\nNama: %s\nNIK: %s\nKamar: %d\nLama: %d malam\nTotal: Rp%d\n\n",
+            tamu.nama, tamu.nik, tamu.nomorKamar,
+            tamu.lamaMenginap, tamu.totalBayar);
+    fclose(fp);
+}
+
+void checkout(Kamar kamar[], const char *namaFile) {
+    Tamu tamu;
+    int nomor, i;
+    printf("Nomor kamar untuk check-out: ");
+    scanf("%d", &nomor);
+    for (i = 0; i < JUMLAH_KAMAR; i++) {
+        if (kamar[i].nomor == nomor && kamar[i].terisi) {
+            printf("Nama tamu: ");
+            scanf(" %49[^\n]", tamu.nama);
+            printf("NIK: ");
+            scanf(" %24s", tamu.nik);
+            printf("Lama menginap (malam): ");
+            scanf("%d", &tamu.lamaMenginap);
+            if (tamu.lamaMenginap < 1) {
+                printf("Lama menginap tidak valid.\n");
+                return;
+            }
+            tamu.nomorKamar = nomor;
+            tamu.totalBayar = kamar[i].tarif * tamu.lamaMenginap;
+            buatInvoice(tamu);
+            kamar[i].terisi = 0;
+            simpanKamar(kamar, namaFile);
+            printf("Check-out berhasil. Total pembayaran: Rp%d\n", tamu.totalBayar);
+            return;
+        }
+    }
+    printf("Kamar tidak ditemukan atau sedang kosong.\n");
+}
+
+void tampilStatus(Kamar kamar[]) {
+    int i, kosong = 0;
+    printf("Kamar yang tersedia: ");
+    for (i = 0; i < JUMLAH_KAMAR; i++) {
+        if (!kamar[i].terisi) {
+            printf("%d ", kamar[i].nomor);
+            kosong++;
+        }
+    }
+    printf("\nJumlah kamar kosong: %d\n", kosong);
+}
