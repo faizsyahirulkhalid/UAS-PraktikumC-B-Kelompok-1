@@ -139,3 +139,30 @@ void tampilStatus(Kamar kamar[]) {
     }
     printf("\nJumlah kamar kosong: %d\n", kosong);
 }
+
+void tampilkanStatusKamar(kamar daftarKamar[]) {
+    int i;
+    int kosong = 0;
+    int terisi = 0;
+
+    printf("\n==================== STATUS KAMAR ====================\n");
+    printf("No.\tTipe\t\tTarif\t\tStatus\n");
+    printf("--------------------------------------------------------\n");
+
+    for (i = 0; i < JUMLAH_KAMAR; i++) {
+        printf("%d\t%-10s\tRp%d\t%s\n",
+               daftarKamar[i].nomor,
+               daftarKamar[i].tipe,
+               daftarKamar[i].tarif,
+               daftarKamar[i].terisi ? "Terisi" : "Kosong");
+
+        if (daftarKamar[i].terisi) {
+            terisi++;
+        } else {
+            kosong++;
+        }
+    }
+
+    printf("--------------------------------------------------------\n");
+    printf("Kosong: %d | Terisi: %d\n", kosong, terisi);
+}
