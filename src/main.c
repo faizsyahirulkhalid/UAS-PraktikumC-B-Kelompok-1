@@ -38,3 +38,24 @@ do {
     printf("input harus berupa angka");
     return 1;
   }
+
+  switch (pilihan) {
+    case 1:
+tampilkamar(Kamar);
+break;
+case 2:
+reservasi(kamar, namaFile);
+break;
+
+case 3:
+checkout(kamar, NamaFile);
+break;
+
+case 4:
+printf(:Terima kasih telah menggunakan program ini. \n)";
+break;
+
+default:
+prinft ("Pilihan tidak tersedia. Silakan pilih 1-4,\n);
+  }
+
