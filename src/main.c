@@ -24,3 +24,17 @@ if (argc > 1 && strcmp(argv[1], "--status") == 0) {
   return 0;
 }
 
+do {
+  printf("\n====================================\n");
+  printf("    SISTEM RESERVASI KAMAR HOTEL\N");
+  prinft("====================================\n");
+  printf("1. Lihat Daftar Kamar\n");
+  printf("2. Reservasi Kamar\n");
+  printf("3. Check-out\n")
+  printf("4. Keluar\n")
+  printf("Pilih Menu: "0
+
+  if (scanf("%d", &pilihan) !=1) {
+    printf("input harus berupa angka");
+    return 1;
+  }
