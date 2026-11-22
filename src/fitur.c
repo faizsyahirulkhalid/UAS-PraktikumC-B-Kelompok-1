@@ -185,3 +185,37 @@ void tampilkanDataTamu(Tamu daftarTamu[], int jumlahTamu) {
         printf("--------------------------------------------------------\n");
     }
 }
+
+void menuAdmin(kamar daftarKamar[], Tamu daftarTamu[], int jumlahTamu) {
+    int pilihan;
+
+    do {
+        printf("\n====================== MENU ADMIN ======================\n");
+        printf("1. Tampilkan Status Kamar\n");
+        printf("2. Tampilkan Data Tamu\n");
+        printf("0. Keluar dari Menu Admin\n");
+        printf("Pilih: ");
+
+        if (scanf("%d", &pilihan) != 1) {
+            while (getchar() != '\n');
+            printf("Input harus berupa angka.\n");
+            pilihan = -1;
+            continue;
+        }
+        getchar();
+
+        switch (pilihan) {
+            case 1:
+                tampilkanStatusKamar(daftarKamar);
+                break;
+            case 2:
+                tampilkanDataTamu(daftarTamu, jumlahTamu);
+                break;
+            case 0:
+                printf("Kembali dari menu admin.\n");
+                break;
+            default:
+                printf("Pilihan tidak valid.\n");
+        }
+    } while (pilihan != 0);
+}
