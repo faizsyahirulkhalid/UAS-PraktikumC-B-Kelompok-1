@@ -8,7 +8,7 @@ typedef struct {
   char tipe[20];
   int tarif;
   int terisi;
-} kamar;
+} Kamar;
 
 typedef struct {
   char nama[50];
@@ -18,8 +18,8 @@ typedef struct {
   int totalBayar;
 } Tamu;
 
-void isiKamar(kamar kamar[]);
+void isiKamar(Kamar kamar[]);
 void tampilKamar(Kamar kamar[]);
-void tampilStatus(kamar kamar[]);
+void tampilStatus(Kamar kamar[]);
 
 #endif

@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (argc > 1 && strcmp(argv[1], "--status") != 0) {
-    namFile = argv[1];
+    namaFile = argv[1];
   }
 
 bacaKamar(kamar, namaFile);
@@ -26,13 +26,13 @@ if (argc > 1 && strcmp(argv[1], "--status") == 0) {
 
 do {
   printf("\n====================================\n");
-  printf("    SISTEM RESERVASI KAMAR HOTEL\N");
-  prinft("====================================\n");
+  printf("    SISTEM RESERVASI KAMAR HOTEL\n");
+  printf("====================================\n");
   printf("1. Lihat Daftar Kamar\n");
   printf("2. Reservasi Kamar\n");
-  printf("3. Check-out\n")
-  printf("4. Keluar\n")
-  printf("Pilih Menu: "0
+  printf("3. Check-out\n");
+  printf("4. Keluar\n");
+  printf("Pilih Menu: ");
 
   if (scanf("%d", &pilihan) !=1) {
     printf("input harus berupa angka");
@@ -49,15 +49,15 @@ do {
       break;
 
     case 3:
-      checkout(kamar, NamaFile);
+      checkout(kamar, namaFile);
       break;
 
     case 4:
-      printf(:Terima kasih telah menggunakan program ini. \n)";
+      printf(":Terima kasih telah menggunakan program ini. \n");
       break;
 
     default:
-      prinft ("Pilihan tidak tersedia. Silakan pilih 1-4,\n);
+      printf ("Pilihan tidak tersedia. Silakan pilih 1-4,\n");
       }
         
     } while (pilihan != 4);
