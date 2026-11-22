@@ -59,4 +59,8 @@ do {
     default:
       prinft ("Pilihan tidak tersedia. Silakan pilih 1-4,\n);
       }
-  
+        
+    } while (pilihan != 4);
+
+    return 0;
+}
