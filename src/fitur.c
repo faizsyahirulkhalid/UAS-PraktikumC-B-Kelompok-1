@@ -166,3 +166,22 @@ void tampilkanStatusKamar(kamar daftarKamar[]) {
     printf("--------------------------------------------------------\n");
     printf("Kosong: %d | Terisi: %d\n", kosong, terisi);
 }
+
+void tampilkanDataTamu(Tamu daftarTamu[], int jumlahTamu) {
+    int i;
+
+    printf("\n====================== DATA TAMU =======================\n");
+    if (jumlahTamu <= 0) {
+        printf("Belum ada data tamu.\n");
+        return;
+    }
+
+    for (i = 0; i < jumlahTamu; i++) {
+        printf("Nama          : %s\n", daftarTamu[i].nama);
+        printf("NIK           : %s\n", daftarTamu[i].nik);
+        printf("No. Kamar     : %d\n", daftarTamu[i].nomorkamar);
+        printf("Lama Menginap : %d malam\n", daftarTamu[i].lamaMenginap);
+        printf("Total Bayar   : Rp%d\n", daftarTamu[i].totalBayar);
+        printf("--------------------------------------------------------\n");
+    }
+}
