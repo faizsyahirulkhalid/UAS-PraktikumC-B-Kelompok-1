@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 bacaKamar(kamar, namaFile);
 
 if (argc > 1 && strcmp(argv[1], "--status") == 0) {
-  tampilanStatus(kamar);
+  tampilStatus(kamar);
   return 0;
 }
 
@@ -41,7 +41,7 @@ do {
 
   switch (pilihan) {
     case 1:
-      tampilkamar(kamar);
+      tampilKamar(kamar);
       break;
 
     case 2:

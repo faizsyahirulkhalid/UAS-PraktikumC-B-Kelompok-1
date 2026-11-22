@@ -1,54 +1,61 @@
 # UAS-Kelompok-1 (Program Reservasi Kamar Hotel (Bahasa C))
-UAS Praktikum Pemrograman
+UAS Praktikum Pemrograman, Sistem Reservasi Kamar Hotel
 
-Repositori proyek UAS Praktikum Pemrograman Bahasa C (**Kelompok 1**), berisi implementasi sistem pengelolaan kamar hotel, reservasi, check-out, pencetakan invoice, tampilan status kamar, data tamu, dan menu admin.
+Program sederhana berbasis terminal menggunakan bahasa C.
 
 ## Fitur
-- Melihat daftar dan status lima kamar (*Kosong*/*Terisi*) serta jumlah kamar kosong dan terisi.
-- Melakukan reservasi dan menghitung biaya berdasarkan tarif kamar dikali lama menginap.
-- Melakukan check-out, memperbarui status kamar menjadi kosong, dan membuat invoice.
-- Melihat data tamu serta mengakses menu admin (`menuAdmin`, `tampilkanStatusKamar`, `tampilkanDataTamu`).
-- Menyimpan dan membaca data kamar (`FILE_DB` di `data/kamar.bin`) serta mencetak invoice ke `data/invoice.txt`.
+- Melihat daftar kamar dan statusnya.
+- Reservasi kamar dan menghitung perkiraan biaya.
+- Check-out dan membuat invoice.
+- Menyimpan data kamar dalam file binary.
+- Membuat invoice dalam file teks.
+- Mendukung argumen `--help`, `--status`, dan nama file database.
 
-## Pembagian Tugas Kelompok
-- **Anggota 1 — NOVAL : Program Utama & Alur Program (`src/main.c`)**: Mengatur fungsi `main()`, menu utama, serta mengintegrasikan fitur antaranggota kelompok.
-- **Anggota 2 — FAIS : Struct, Konstanta & Penyimpanan Data (`include/fitur.h` & bagian database `src/fitur.c`)**: Mendefinisikan konstanta (`JUMLAH_KAMAR`, `JUMLAH_TAMU`, `FILE_DB`), struktur data (`kamar`, `Tamu`), serta fungsi pengelolaan/penyimpanan data.
-- **Anggota 3 — RAYHAN : Reservasi Kamar (bagian reservasi `src/fitur.c`)**: Mengelola proses reservasi kamar, input identitas tamu, pemilihan kamar, perhitungan biaya, dan pembaruan status kamar.
-- **Anggota 4 — NADIA : Check-out & Invoice (bagian check-out `src/fitur.c`)**: Mengelola proses check-out, pembuatan invoice menggunakan `fprintf()`, dan pengembalian status kamar menjadi kosong.
-- **Anggota 5 — SARAH : Status Kamar, Data Tamu, Menu Admin & Dokumentasi**:
-  - **`tampilkanStatusKamar()`**: Menampilkan nomor, tipe, tarif, status kamar, serta jumlah kamar kosong dan terisi.
-  - **`tampilkanDataTamu()`**: Menampilkan data tamu meliputi nama, NIK, nomor kamar, lama menginap, dan total bayar.
-  - **`menuAdmin()`**: Menyediakan menu administrasi interaktif untuk menampilkan status kamar dan data tamu.
-  - **Dokumentasi `README.md`**: Menyusun dan menyesuaikan dokumentasi proyek serta memeriksa hasil integrasi.
+## Struktur data
+- `Kamar`: nomor, tipe, tarif, dan status terisi.
+- `Tamu`: nama, NIK, nomor kamar, lama menginap, dan total pembayaran.
 
-## Struktur Folder
-- `include/fitur.h`: Deklarasi konstanta (`JUMLAH_KAMAR`, `JUMLAH_TAMU`, `FILE_DB`), struct (`kamar`, `Tamu`), dan prototipe fungsi.
-- `src/fitur.c`: Implementasi fungsi pengelolaan kamar, reservasi, invoice, check-out, status kamar, data tamu, dan menu admin.
-- `src/main.c`: Titik masuk program (`main()`), alur menu utama, dan integrasi seluruh fitur.
-- `data/`: Penyimpanan data kamar (`data/kamar.bin`) dan file invoice (`data/invoice.txt`).
-- `.gitignore`: Mengabaikan file hasil kompilasi dan artefak lokal.
-
-## Cara Kompilasi
-Jalankan dari folder utama repositori (`UAS-PraktikumC-B-Kelompok-1`):
+## Kompilasi
+Dari folder utama proyek:
 
 ```bash
-gcc -Iinclude src/main.c src/fitur.c -o hotel
+gcc src/main.c src/fitur.c -Iinclude -o hotel
 ```
 
-Di Windows:
+## Menjalankan
 
-```bash
-gcc -Iinclude src/main.c src/fitur.c -o hotel.exe
-```
-
-## Cara Menjalankan
 ```bash
 ./hotel
+./hotel --help
+./hotel --status
+./hotel data/kamar.bin
 ```
 
-Pada Windows, ganti `./hotel` dengan `hotel.exe`.
+Pada Windows, jalankan `hotel.exe` sebagai pengganti `./hotel`.
+Database dibuat otomatis di folder `data` saat program pertama kali dijalankan. Invoice check-out ditambahkan ke `data/invoice.txt`.
 
-## Catatan 
-- Kapasitas kamar diatur pada `JUMLAH_KAMAR` (5 kamar) dan `JUMLAH_TAMU` (5).
-- Tarif kamar pada inisialisasi awal: Standard Rp250.000, Deluxe Rp400.000, dan Suite Rp650.000.
-- Program ini dibuat untuk keperluan praktikum UAS pemrograman bahasa C.
+## Anggota dan pembagian tugas
+1. RAIHAN - Koordinator dan Program Utama
+   - Menyusun alur program dan menu utama pada src/main.c.
+   - Mengatur pembacaan argc dan argv (--help, --status, nama file database).
+   - Menggabungkan seluruh bagian kode dan memastikan program dapat dijalankan.
+
+2. NOVAL - Struktur Data dan Informasi Kamar
+   - Menyusun typedef struct Kamar dan Tamu pada include/fitur.h.
+   - Membuat data awal kamar, tipe kamar, tarif, dan status kamar.
+   - Mengerjakan fungsi isiKamar() dan tampilKamar() pada src/fitur.c.
+
+3. FAIS - Fitur Reservasi
+   - Mengerjakan proses input data tamu dan pemilihan kamar.
+   - Mengerjakan fungsi reservasi(), termasuk pengecekan kamar dan perhitungan biaya.
+   - Menguji alur reservasi berhasil dan kamar yang sudah terisi.
+
+4. NADIA - Check-out dan File Handling
+   - Mengerjakan penyimpanan/pembacaan database binary dengan fwrite() dan fread().
+   - Mengerjakan proses check-out dan pembuatan invoice teks dengan fprintf().
+   - Menguji data agar status kamar tersimpan setelah program ditutup.
+
+5. SARAH - Pengujian dan Dokumentasi
+   - Menguji menu, input, reservasi, check-out, dan argumen command line.
+   - Menyusun README.md dan petunjuk kompilasi/pemakaian.
+   - Menyiapkan .gitignore serta membantu mencatat commit dan menggabungkan branch GitHub.
