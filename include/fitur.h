@@ -21,7 +21,5 @@ typedef struct {
 void isiKamar(kamar kamar[]);
 void tampilKamar(Kamar kamar[]);
 void tampilStatus(kamar kamar[]);
-void tampilkanDataTamu(Tamu daftarTamu[], int jumlahTamu);
-void menuAdmin(kamar daftarKamar[], Tamu daftarTamu[], int jumlahTamu);
 
 #endif
