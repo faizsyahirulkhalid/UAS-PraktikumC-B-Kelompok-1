@@ -41,7 +41,7 @@ do {
 
   switch (pilihan) {
     case 1:
-      tampilkamar(Kamar);
+      tampilkamar(kamar);
       break;
 
     case 2:

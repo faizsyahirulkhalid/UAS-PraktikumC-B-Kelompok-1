@@ -139,4 +139,3 @@ void tampilStatus(Kamar kamar[]) {
     }
     printf("\nJumlah kamar kosong: %d\n", kosong);
 }
-

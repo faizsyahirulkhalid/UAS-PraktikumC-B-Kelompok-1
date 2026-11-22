@@ -13,7 +13,7 @@ typedef struct {
 typedef struct {
   char nama[50];
   char nik[25];
-  int nomorkamar;
+  int nomorKamar;
   int lamaMenginap;
   int totalBayar;
 } Tamu;
