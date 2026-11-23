@@ -1,8 +1,6 @@
 #ifndef FITUR_H
 #define FITUR_H
 
-#include <stdio.h>
-
 #define JUMLAH_KAMAR 5
 #define FILE_DB "data/kamar.bin"
 
